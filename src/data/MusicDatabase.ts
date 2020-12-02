@@ -4,62 +4,66 @@ import BaseDataBase from "./BaseDatabase";
 class MusicDatabase extends BaseDataBase {
 
     private static TABLE_MUSIC = "MUSIC_TABLE"
-    private static TABLE_HASHTAG = "HASHTAG_TABLE"
+    private static TABLE_GENRE = "GENRE_TABLE"
     /**
      * createImage
      */
     public async createMusic(
         id: string,
-        subtitle: string,
+        title: string,
         author: string,
         date: Date,
         file: string,
-        tags: string[],
-        collection: string
-    ): Promise<void> {
+        genre: string[],
+        album: string
+    ): Promise<any> {
         try {
-            const result = await BaseDataBase.connection(MusicDatabase.TABLE_HASHTAG)
-                .select("hashtag")
-                .where(tags)
+            const result = await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
+                .select("genre")
+                .where(genre)
 
             if (!result[0][0]) {
-                await BaseDataBase.connection(MusicDatabase.TABLE_HASHTAG)
-                    .insert(id, tags)
+                await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
+                    .insert(id, genre)
             }
 
-            await BaseDataBase.connection
+            const result1 = await BaseDataBase.connection
                 .insert({
                     id,
-                    subtitle,
+                    title,
                     author,
                     date,
                     file,
-                    tags,
-                    collection
+                    genre,
+                    album
                 })
                 .into(MusicDatabase.TABLE_MUSIC);
+
+            return result1
+
         } catch (error) {
+            console.log(genre)
             throw new Error(error.sqlMessage || error.message);
         }
     }
 
-    public async getAllMusics(): Promise<Music> {
+    public async getAllMusics(): Promise<any> {
         try {
             const result = await BaseDataBase.connection.raw(`
           SELECT * from ${MusicDatabase.TABLE_MUSIC} 
         `);
-            return (result[0][0]);
+            return Music.toMusicModel(result[0][0]);
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
 
-    public async getMusicById(id: string): Promise<Music> {
+    public async getMusicById(id: string): Promise<any> {
         try {
             const result = await BaseDataBase.connection.raw(`
           SELECT * from ${MusicDatabase.TABLE_MUSIC} WHERE id = '${id}'
         `);
-            return (result[0][0]);
+            return Music.toMusicModel(result[0][0]);
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }

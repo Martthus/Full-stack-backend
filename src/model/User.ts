@@ -51,8 +51,6 @@ export class User {
     static toUserModel(user: any): User {
         return new User(user.id, user.name, user.email, user.nickname, user.password);
     }
-
-
 }
 
 export interface UserInputDTO {
