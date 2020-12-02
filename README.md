@@ -2,7 +2,7 @@
 
 ### Banco de dados criado para armazenar novas músicas
 
-# Principais funcionalidades :milky_way:
+# Principais funcionalidades :earth_asia:
 
  #### Acesso sem estar logado:
  - [x] Cadastrar usuário.
@@ -32,7 +32,7 @@
  ```
 # Endpoints disponíveis:
 
-### CADASTRO
+### CADASTRO :clipboard:
  ```sql
     POST http://localhost:3003/user/signup
       Content-Type: application/json
@@ -45,7 +45,7 @@
   }
  ```
 
-### LOGIN
+### LOGIN :busts_in_silhouette:
  ```sql
     POST http://localhost:3003/user/login
       Content-Type: application/json
@@ -56,7 +56,7 @@
   }
  ```
 
-### NEW MUSIC
+### NEW MUSIC :notes:
  ```sql
     POST http://localhost:3003/music/new
       Authorization: token de autorização / ex: "qbfq@%ffw6sdf342¨@%#&sfsw52342¨@%f6125f"
