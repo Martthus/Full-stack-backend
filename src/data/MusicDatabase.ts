@@ -20,9 +20,9 @@ class MusicDatabase extends BaseDataBase {
         try {
             const result = await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
                 .select("genre")
-                .where(genre)
+                .where({genre})
 
-            if (!result[0][0]) {
+            if (!result) {
                 await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
                     .insert(id, genre)
             }
@@ -42,7 +42,6 @@ class MusicDatabase extends BaseDataBase {
             return result1
 
         } catch (error) {
-            console.log(genre)
             throw new Error(error.sqlMessage || error.message);
         }
     }
