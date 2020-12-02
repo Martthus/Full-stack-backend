@@ -28,7 +28,7 @@
  ```
  - [x] Por fim executando a aplicação
  ```
-  npm run start dev
+  npm run dev
  ```
 # Endpoints disponíveis:
 
