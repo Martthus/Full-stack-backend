@@ -1,17 +1,17 @@
 export class Music {
     constructor(
         private id: string,
-        private subtitle: string,
+        private title: string,
         private author: string,
         private date: Date,
         private file: string,
-        private tags: string[],
-        private collection: string
+        private genre: string[],
+        private album: string
     ) { }
 
     getId(): string { return this.id; }
 
-    getSubtitle(): string { return this.subtitle; }
+    getTitle(): string { return this.title; }
 
     getAuthor(): string { return this.author; }
 
@@ -19,16 +19,16 @@ export class Music {
 
     getFile(): string { return this.file; }
 
-    getTags(): string[] { return this.tags; }
+    getGenre(): string[] { return this.genre; }
 
-    getCollection(): string { return this.collection; }
+    getAlbum(): string { return this.album; }
 
     setId(id: string) {
         this.id = id;
     }
 
-    setSubtitle(subtitle: string) {
-        this.subtitle = subtitle;
+    setTitle(title: string) {
+        this.title = title;
     }
 
     setAuthor(author: string) {
@@ -43,18 +43,22 @@ export class Music {
         this.file = file;
     }
 
-    setTags(tags: string[],) {
-        this.tags = tags;
+    setGenre(genre: string[],) {
+        this.genre = genre;
     }
 
-    setCollection(collection: string) {
-        this.collection = collection;
+    setAlbum(album: string) {
+        this.album = album;
+    }
+
+    static toMusicModel(music: any): Music {
+        return new Music(music.id, music.title, music.author, music.date, music.file, music.genre, music.album);
     }
 }
 
-export interface MusicInputDTO{
-    subtitle: string;
-    file: string;
-    tags: string[];
-    collection: string
+export interface MusicInputDTO {
+    title: string,
+    file: string,
+    genre: string[],
+    album: string
 }

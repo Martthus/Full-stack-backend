@@ -4,14 +4,14 @@ import { musicBusiness } from "../business/MusicBusiness";
 import { CustomError } from "../error/CustomError";
 
 class MusicController {
-    async createImage(req: Request, res: Response) {
+    async createMusic(req: Request, res: Response) {
         try {
 
             const image: MusicInputDTO = {
-                subtitle: req.body.subtitle,
+                title: req.body.title,
                 file: req.body.file,
-                tags: req.body.tags,
-                collection: req.body.collection
+                genre: req.body.genre,
+                album: req.body.album
             }
 
             const user: any = {
@@ -20,14 +20,22 @@ class MusicController {
 
             const token = await musicBusiness.createMusic(image, user);
 
-            res.status(200).send({ token });
+            if (!token) {
+                console.log("indefinido")
+            } else {
+                console.log("não indefinido")
+            }
+
+            console.log({ token: !token })
+
+            res.status(200).send({ message: "New music published!" });
 
         } catch (error) {
             res.status(400).send({ error: error.message });
         }
     }
 
-    public async getAllImages(req: Request, res: Response) {
+    public async getAllMusics(req: Request, res: Response) {
         try {
 
             const { token }: any = req.headers.authorization as string
@@ -41,7 +49,7 @@ class MusicController {
         }
     }
 
-    public async getImageById(req: Request, res: Response) {
+    public async getMusicById(req: Request, res: Response) {
         try {
 
             const input = {

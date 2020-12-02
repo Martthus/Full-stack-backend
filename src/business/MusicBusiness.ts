@@ -5,7 +5,7 @@ import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 
 class MusicBusiness {
-    public async createMusic(image: MusicInputDTO, user: any) {
+    public async createMusic(music: MusicInputDTO, user: any) {
         try {
             const date = new Date();
 
@@ -13,7 +13,7 @@ class MusicBusiness {
 
             const verifyToken = authenticator.getData(user.token)
 
-            if (!image.subtitle || !image.file || !image.collection) {
+            if (!music.title || !music.file || !music.album) {
                 throw new CustomError("Missing input", 422);
             }
 
@@ -24,11 +24,19 @@ class MusicBusiness {
             const idGenerator = new IdGenerator();
             const id = idGenerator.generate();
 
+            // console.log(id)
+            // console.log(music.title)
+            // console.log(verifyToken.id)
+            // console.log(date)
+            // console.log(music.file)
+            // console.log(music.genre)
+            // console.log(music.album)
+
             await musicDatabase.createMusic(
 
-                id, image.subtitle, verifyToken.id,
-                date, image.file, image.tags,
-                image.collection
+                id, music.title, verifyToken.id,
+                date, music.file, music.genre,
+                music.album
             );
 
             return { message: "Image create succefull!" };
@@ -51,12 +59,12 @@ class MusicBusiness {
 
             return {
                 id: image.getId(),
-                subtitle: image.getSubtitle(),
+                subtitle: image.getTitle(),
                 author: image.getAuthor(),
                 date: image.getDate(),
                 file: image.getFile(),
-                tags: image.getTags(),
-                collection: image.getCollection()
+                tags: image.getGenre(),
+                collection: image.getAlbum()
             }
 
         } catch (error) {
@@ -75,12 +83,12 @@ class MusicBusiness {
 
             return {
                 id: image.getId(),
-                subtitle: image.getSubtitle(),
+                subtitle: image.getTitle(),
                 author: image.getAuthor(),
                 date: image.getDate(),
                 file: image.getFile(),
-                tags: image.getTags(),
-                collection: image.getCollection()
+                tags: image.getGenre(),
+                collection: image.getAlbum()
             }
 
         } catch (error) {

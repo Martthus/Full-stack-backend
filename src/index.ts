@@ -2,12 +2,14 @@ import { AddressInfo } from "net";
 import express from "express";
 import { userRouter } from "./routes/userRouter";
 import cors from 'cors'
+import { musicRouter } from "./routes/musicRouter";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors())
 app.use("/user", userRouter);
+app.use("/music", musicRouter)
 
 const server = app.listen(3003, () => {
     if (server) {
