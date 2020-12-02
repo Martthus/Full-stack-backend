@@ -24,22 +24,14 @@ class MusicBusiness {
             const idGenerator = new IdGenerator();
             const id = idGenerator.generate();
 
-            // console.log(id)
-            // console.log(music.title)
-            // console.log(verifyToken.id)
-            // console.log(date)
-            // console.log(music.file)
-            // console.log(music.genre)
-            // console.log(music.album)
-
-            await musicDatabase.createMusic(
-
+            const newMusic = await musicDatabase.createMusic(
                 id, music.title, verifyToken.id,
                 date, music.file, music.genre,
                 music.album
             );
 
-            return { message: "Image create succefull!" };
+            return newMusic
+
         } catch (error) {
             throw new CustomError(error.message, error.statusCode)
         }
@@ -58,15 +50,18 @@ class MusicBusiness {
 
             const music = await musicDatabase.getAllMusics();
 
-            return {
-                id: music.getId(),
-                title: music.getTitle(),
-                author: music.getAuthor(),
-                date: music.getDate(),
-                file: music.getFile(),
-                genre: music.getGenre(),
-                album: music.getAlbum()
-            }
+            return music
+            
+                    //Perguntar no plantão -->
+            // {
+            //     id: music.getId(),
+            //     title: music.getTitle(),
+            //     author: music.getAuthor(),
+            //     date: music.getDate(),
+            //     file: music.getFile(),
+            //     genre: music.getGenre(),
+            //     album: music.getAlbum()
+            // }
 
         } catch (error) {
             throw new CustomError(error.message, error.statusCode)

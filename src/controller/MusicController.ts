@@ -1,13 +1,12 @@
 import { MusicInputDTO } from "../model/Music";
 import { Request, Response } from "express";
 import { musicBusiness } from "../business/MusicBusiness";
-import { CustomError } from "../error/CustomError";
 
 class MusicController {
     async createMusic(req: Request, res: Response) {
         try {
 
-            const image: MusicInputDTO = {
+            const music: MusicInputDTO = {
                 title: req.body.title,
                 file: req.body.file,
                 genre: req.body.genre,
@@ -18,15 +17,7 @@ class MusicController {
                 token: req.headers.authorization as string
             }
 
-            const token = await musicBusiness.createMusic(image, user);
-
-            if (!token) {
-                console.log("indefinido")
-            } else {
-                console.log("não indefinido")
-            }
-
-            console.log({ token: !token })
+            await musicBusiness.createMusic(music, user);
 
             res.status(200).send({ message: "New music published!" });
 

@@ -18,16 +18,7 @@ class MusicDatabase extends BaseDataBase {
         album: string
     ): Promise<any> {
         try {
-            const result = await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
-                .select("genre")
-                .where({genre})
-
-            if (!result) {
-                await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
-                    .insert(id, genre)
-            }
-
-            const result1 = await BaseDataBase.connection
+            await BaseDataBase.connection(MusicDatabase.TABLE_MUSIC)
                 .insert({
                     id,
                     title,
@@ -36,10 +27,18 @@ class MusicDatabase extends BaseDataBase {
                     file,
                     genre,
                     album
-                })
-                .into(MusicDatabase.TABLE_MUSIC);
+                });
 
-            return result1
+            const result = await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
+                .select("genre")
+                .where({ genre })
+
+            if (result.length <= 0) {
+                await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
+                    .insert({ id, genre });
+            }
+
+            return
 
         } catch (error) {
             throw new Error(error.sqlMessage || error.message);
@@ -51,7 +50,9 @@ class MusicDatabase extends BaseDataBase {
             const result = await BaseDataBase.connection.raw(`
           SELECT * from ${MusicDatabase.TABLE_MUSIC} 
         `);
-            return Music.toMusicModel(result[0][0]);
+
+            return (result[0]);
+
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
