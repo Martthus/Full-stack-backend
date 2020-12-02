@@ -70,7 +70,7 @@
   }
  ```
  
- ### GET ALL MUSICS
+ ### GET ALL MUSICS :musical_score:
   ```sql
       GET http://localhost:3003/music/all
         Authorization: token de autorização / ex: "qbfq@%ffw6sdf342¨@%#&sfsw52342¨@%f6125f"
