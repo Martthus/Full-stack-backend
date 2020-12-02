@@ -47,28 +47,29 @@ class MusicBusiness {
 
     public async getAllMusics(user: any) {
         try {
+
             const authenticator = new Authenticator();
 
-            const verifyToken = authenticator.getData(user.token)
+            const verifyToken = authenticator.getData(user)
 
             if (!verifyToken) {
                 throw new CustomError("Not authorized", 401);
             }
 
-            const image = await musicDatabase.getAllMusics();
+            const music = await musicDatabase.getAllMusics();
 
             return {
-                id: image.getId(),
-                subtitle: image.getTitle(),
-                author: image.getAuthor(),
-                date: image.getDate(),
-                file: image.getFile(),
-                tags: image.getGenre(),
-                collection: image.getAlbum()
+                id: music.getId(),
+                title: music.getTitle(),
+                author: music.getAuthor(),
+                date: music.getDate(),
+                file: music.getFile(),
+                genre: music.getGenre(),
+                album: music.getAlbum()
             }
 
         } catch (error) {
-            throw new CustomError(error.statusCode, error.message)
+            throw new CustomError(error.message, error.statusCode)
         }
     }
 
@@ -92,7 +93,7 @@ class MusicBusiness {
             }
 
         } catch (error) {
-            throw new CustomError(error.statusCode, error.message)
+            throw new CustomError(error.message, error.statusCode)
         }
     }
 }

@@ -38,14 +38,14 @@ class MusicController {
     public async getAllMusics(req: Request, res: Response) {
         try {
 
-            const { token }: any = req.headers.authorization as string
+            const { authorization }: any = req.headers
 
-            const result = await musicBusiness.getAllMusics(token)
+            const result = await musicBusiness.getAllMusics(authorization)
 
             res.status(200).send(result);
 
         } catch (error) {
-            throw new CustomError(error.statusCode, error.message)
+            res.status(400).send({ error: error.message });
         }
     }
 
@@ -61,7 +61,7 @@ class MusicController {
             res.status(200).send(result);
 
         } catch (error) {
-            throw new CustomError(error.statusCode, error.message)
+            res.status(400).send({ error: error.message });
         }
     }
 }
