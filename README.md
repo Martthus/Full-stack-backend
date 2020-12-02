@@ -32,7 +32,7 @@
  ```
 # Endpoints disponíveis:
 
-### CADASTRO :clipboard:
+### SIGNUP :clipboard:
  ```sql
     POST http://localhost:3003/user/signup
       Content-Type: application/json
