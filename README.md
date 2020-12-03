@@ -55,8 +55,8 @@
 
 
   {
-	  "email": ex: "jabuticaba@bom.com",
-	  "password": ex: "123456789"
+      "email": ex: "jabuticaba@bom.com",
+      "password": ex: "123456789"
   }
  ```
 
