@@ -12,6 +12,7 @@
  
  - [x] Ver músicas disponíveis.
  - [x] Criar/publicar uma nova música.
+ - [x] Pegar músicas por id.
  
 # Rodando a aplicação :computer:
  - [x] Clonando o projeto 
