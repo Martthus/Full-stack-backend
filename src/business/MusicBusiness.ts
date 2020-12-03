@@ -51,8 +51,8 @@ class MusicBusiness {
             const music = await musicDatabase.getAllMusics();
 
             return music
-            
-                    //Perguntar no plantão -->
+
+            //Perguntar no plantão -->
             // {
             //     id: music.getId(),
             //     title: music.getTitle(),
@@ -71,20 +71,20 @@ class MusicBusiness {
     public async getMusicById(input: any) {
         try {
 
-            const image = await musicDatabase.getMusicById(input);
+            const music = await musicDatabase.getMusicById(input.id);
 
             if (!input.id) {
                 throw new CustomError("invalid-id", 401)
             }
 
             return {
-                id: image.getId(),
-                subtitle: image.getTitle(),
-                author: image.getAuthor(),
-                date: image.getDate(),
-                file: image.getFile(),
-                tags: image.getGenre(),
-                collection: image.getAlbum()
+                id: music.getId(),
+                title: music.getTitle(),
+                author: music.getAuthor(),
+                date: music.getDate(),
+                file: music.getFile(),
+                genre: music.getGenre(),
+                album: music.getAlbum()
             }
 
         } catch (error) {

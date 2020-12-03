@@ -63,7 +63,8 @@ class MusicDatabase extends BaseDataBase {
             const result = await BaseDataBase.connection.raw(`
           SELECT * from ${MusicDatabase.TABLE_MUSIC} WHERE id = '${id}'
         `);
-            return Music.toMusicModel(result[0][0]);
+
+        return Music.toMusicModel(result[0][0]);
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
