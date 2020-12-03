@@ -16,26 +16,27 @@
  
 # Rodando a aplicação :computer:
  - [x] Clonando o projeto 
- ```
+ ```bash
   git clone https://github.com/Martthus/Full-stack-backend.git 
  ```
  - [x] Acessando a pasta onde contem a raiz do projeto: /Full-stack-backend
- ```
+ ```bash
   cd Full-stack-backend
  ```
  - [x] Instalando as dependências
- ```
+ ```bash
   npm i
  ```
  - [x] Por fim executando a aplicação
- ```
+ ```bash
   npm run dev
  ```
 # Endpoints disponíveis:
 
 ### SIGNUP :clipboard:
- ```sql
+  ```node
     POST http://localhost:3003/user/signup
+      Authorization: none
       Content-Type: application/json
 
   {
@@ -47,9 +48,11 @@
  ```
 
 ### LOGIN :busts_in_silhouette:
- ```sql
-    POST http://localhost:3003/user/login
+```node
+    POST http://localhost:3003/music/new
+      Authorization: none
       Content-Type: application/json
+
 
   {
 	  "email": ex: "jabuticaba@bom.com",
@@ -58,7 +61,7 @@
  ```
 
 ### NEW MUSIC :notes:
- ```sql
+ ```node
     POST http://localhost:3003/music/new
       Authorization: token de autorização / ex: "qbfq@%ffw6sdf342¨@%#&sfsw52342¨@%f6125f"
       Content-Type: application/json
@@ -72,8 +75,15 @@
  ```
  
  ### GET ALL MUSICS :musical_score:
-  ```sql
+  ```node
       GET http://localhost:3003/music/all
+        Authorization: token de autorização / ex: "qbfq@%ffw6sdf342¨@%#&sfsw52342¨@%f6125f"
+        Content-Type: application/json
+  ```
+  
+ ### GET MUSIC BY ID :musical_score:
+  ```node
+      GET http://localhost:3003/music/{{id}}
         Authorization: token de autorização / ex: "qbfq@%ffw6sdf342¨@%#&sfsw52342¨@%f6125f"
         Content-Type: application/json
   ```
