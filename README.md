@@ -49,7 +49,7 @@
 
 ### LOGIN :busts_in_silhouette:
 ```node
-    POST http://localhost:3003/music/new
+    POST http://localhost:3003/user/login
       Authorization: none
       Content-Type: application/json
 
