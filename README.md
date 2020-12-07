@@ -1,6 +1,9 @@
-# Full-stack-backend
+# Full-stack-backend.
 
-### Banco de dados criado para armazenar novas músicas
+### Banco de dados criado para armazenar novas músicas.
+
+#### Documentação da API: 
+- https://documenter.getpostman.com/view/12473711/TVmS6aSF#af7b6bb6-f9a9-46d5-9fa5-80301e8b0950
 
 # Principais funcionalidades :earth_asia:
 
