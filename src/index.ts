@@ -11,7 +11,7 @@ app.use(cors())
 app.use("/user", userRouter);
 app.use("/music", musicRouter)
 
-const server = app.listen(3003, () => {
+const server = app.listen(3003 || 5000, () => {
     if (server) {
         const address = server.address() as AddressInfo;
         console.log(`Servidor rodando em http://localhost:${address.port}`);

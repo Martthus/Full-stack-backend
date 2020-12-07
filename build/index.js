@@ -12,7 +12,7 @@ app.use(express_1.default.json());
 app.use(cors_1.default());
 app.use("/user", userRouter_1.userRouter);
 app.use("/music", musicRouter_1.musicRouter);
-const server = app.listen(3003, () => {
+const server = app.listen(3003 || 5000, () => {
     if (server) {
         const address = server.address();
         console.log(`Servidor rodando em http://localhost:${address.port}`);
