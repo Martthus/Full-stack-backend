@@ -70,6 +70,13 @@ class MusicBusiness {
 
     public async getMusicById(input: any) {
         try {
+            const authenticator = new Authenticator();
+
+            const verifyToken = authenticator.getData(input.token)
+
+            if (!verifyToken) {
+                throw new CustomError("Not authorized", 401);
+            }
 
             const music = await musicDatabase.getMusicById(input.id);
 

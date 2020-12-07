@@ -44,7 +44,8 @@ class MusicController {
         try {
 
             const input = {
-                id: req.params.id
+                id: req.params.id,
+                token: req.headers.authorization
             }
 
             const result = await musicBusiness.getMusicById(input)
