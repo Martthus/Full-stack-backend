@@ -15,7 +15,8 @@ class MusicDatabase extends BaseDataBase {
         date: Date,
         file: string,
         genre: string[],
-        album: string
+        album: string,
+        author_name: string
     ): Promise<any> {
         try {
             await BaseDataBase.connection(MusicDatabase.TABLE_MUSIC)
@@ -26,7 +27,8 @@ class MusicDatabase extends BaseDataBase {
                     date,
                     file,
                     genre,
-                    album
+                    album,
+                    author_name
                 });
 
             const result = await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
@@ -64,7 +66,7 @@ class MusicDatabase extends BaseDataBase {
           SELECT * from ${MusicDatabase.TABLE_MUSIC} WHERE id = '${id}'
         `);
 
-        return Music.toMusicModel(result[0][0]);
+            return Music.toMusicModel(result[0][0]);
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }

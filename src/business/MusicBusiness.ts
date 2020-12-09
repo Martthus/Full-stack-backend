@@ -13,7 +13,7 @@ class MusicBusiness {
 
             const verifyToken = authenticator.getData(user.token)
 
-            if (!music.title || !music.file || !music.album) {
+            if (!music.title || !music.file || !music.album || !music.author_name) {
                 throw new CustomError("Missing input", 422);
             }
 
@@ -27,7 +27,7 @@ class MusicBusiness {
             const newMusic = await musicDatabase.createMusic(
                 id, music.title, verifyToken.id,
                 date, music.file, music.genre,
-                music.album
+                music.album, music.author_name
             );
 
             return newMusic
@@ -91,7 +91,8 @@ class MusicBusiness {
                 date: music.getDate(),
                 file: music.getFile(),
                 genre: music.getGenre(),
-                album: music.getAlbum()
+                album: music.getAlbum(),
+                author_name: music.getAuthor_name()
             }
 
         } catch (error) {
