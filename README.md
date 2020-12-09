@@ -1,6 +1,9 @@
-# Full-stack-backend
+# Full-stack-backend.
 
-### Banco de dados criado para armazenar novas músicas
+### Banco de dados criado para armazenar novas músicas.
+
+#### Documentação da API: 
+- https://documenter.getpostman.com/view/12473711/TVmS6aSF#af7b6bb6-f9a9-46d5-9fa5-80301e8b0950
 
 # Principais funcionalidades :earth_asia:
 
@@ -70,7 +73,8 @@
 	  "title": ex: "Alecrim Dourado",
       "file": ex: "www.musics-cloud.com.cloud/music-alecrimdourado",
       "genre": ex: ["Punk, Rock"],
-      "album": ex: "2017"
+      "album": ex: "2017",
+      "author_name": ex: "Alecrim"
   }
  ```
  
