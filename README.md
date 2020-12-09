@@ -73,7 +73,8 @@
 	  "title": ex: "Alecrim Dourado",
       "file": ex: "www.musics-cloud.com.cloud/music-alecrimdourado",
       "genre": ex: ["Punk, Rock"],
-      "album": ex: "2017"
+      "album": ex: "2017",
+      "author_name": ex: "Alecrim"
   }
  ```
  
