@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Music = void 0;
 class Music {
-    constructor(id, title, author, date, file, genre, album) {
+    constructor(id, title, author, date, file, genre, album, author_name) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -10,6 +10,7 @@ class Music {
         this.file = file;
         this.genre = genre;
         this.album = album;
+        this.author_name = author_name;
     }
     getId() { return this.id; }
     getTitle() { return this.title; }
@@ -18,6 +19,7 @@ class Music {
     getFile() { return this.file; }
     getGenre() { return this.genre; }
     getAlbum() { return this.album; }
+    getAuthor_name() { return this.author_name; }
     setId(id) {
         this.id = id;
     }
@@ -39,8 +41,11 @@ class Music {
     setAlbum(album) {
         this.album = album;
     }
+    setAuthor_name(author_name) {
+        this.author_name = author_name;
+    }
     static toMusicModel(music) {
-        return new Music(music.id, music.title, music.author, music.date, music.file, music.genre, music.album);
+        return new Music(music.id, music.title, music.author, music.date, music.file, music.genre, music.album, music.author_name);
     }
 }
 exports.Music = Music;
