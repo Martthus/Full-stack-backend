@@ -2,6 +2,7 @@ name: deployment
 on:
   pull_request:
     branches:
+      - deployment
       - main
 
 jobs:
