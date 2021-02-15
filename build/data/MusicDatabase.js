@@ -16,7 +16,7 @@ exports.musicDatabase = void 0;
 const Music_1 = require("../model/Music");
 const BaseDatabase_1 = __importDefault(require("./BaseDatabase"));
 class MusicDatabase extends BaseDatabase_1.default {
-    createMusic(id, title, author, date, file, genre, album) {
+    createMusic(id, title, author, date, file, genre, album, author_name) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield BaseDatabase_1.default.connection(MusicDatabase.TABLE_MUSIC)
@@ -27,7 +27,8 @@ class MusicDatabase extends BaseDatabase_1.default {
                     date,
                     file,
                     genre,
-                    album
+                    album,
+                    author_name
                 });
                 const result = yield BaseDatabase_1.default.connection(MusicDatabase.TABLE_GENRE)
                     .select("genre")

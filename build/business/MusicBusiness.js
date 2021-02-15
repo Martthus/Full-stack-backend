@@ -21,7 +21,7 @@ class MusicBusiness {
                 const date = new Date();
                 const authenticator = new Authenticator_1.Authenticator();
                 const verifyToken = authenticator.getData(user.token);
-                if (!music.title || !music.file || !music.album) {
+                if (!music.title || !music.file || !music.album || !music.author_name) {
                     throw new CustomError_1.CustomError("Missing input", 422);
                 }
                 if (!verifyToken) {
@@ -29,7 +29,7 @@ class MusicBusiness {
                 }
                 const idGenerator = new IdGenerator_1.IdGenerator();
                 const id = idGenerator.generate();
-                const newMusic = yield MusicDatabase_1.musicDatabase.createMusic(id, music.title, verifyToken.id, date, music.file, music.genre, music.album);
+                const newMusic = yield MusicDatabase_1.musicDatabase.createMusic(id, music.title, verifyToken.id, date, music.file, music.genre, music.album, music.author_name);
                 return newMusic;
             }
             catch (error) {
@@ -72,7 +72,8 @@ class MusicBusiness {
                     date: music.getDate(),
                     file: music.getFile(),
                     genre: music.getGenre(),
-                    album: music.getAlbum()
+                    album: music.getAlbum(),
+                    author_name: music.getAuthor_name()
                 };
             }
             catch (error) {
