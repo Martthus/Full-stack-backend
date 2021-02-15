@@ -1,7 +1,7 @@
 name: deployment
 on:
-  push: 
-    branches: 
+  push:
+    branches:
       - develop
   pull_request:
     branches:
@@ -15,7 +15,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - name: Run test
+      - name: Instala node package
+        run: npm install
+      - name: Roda os testes
         run: npm run test
 
   deployment:
