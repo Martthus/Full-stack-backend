@@ -1,5 +1,5 @@
 import { musicDatabase } from "../data/MusicDatabase";
-import { CustomError } from "../error/CustomError";
+import { CustomErrors } from "../shared/error/CustomErrors";
 import { MusicInputDTO } from "../model/Music";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
@@ -14,11 +14,11 @@ class MusicBusiness {
             const verifyToken = authenticator.getData(user.token)
 
             if (!music.title || !music.file || !music.album || !music.author_name) {
-                throw new CustomError("Missing input", 422);
+                throw new CustomErrors("Missing input", 422);
             }
 
             if (!verifyToken) {
-                throw new CustomError("Not authorized", 401);
+                throw new CustomErrors("Not authorized", 401);
             }
 
             const idGenerator = new IdGenerator();
@@ -33,7 +33,7 @@ class MusicBusiness {
             return newMusic
 
         } catch (error) {
-            throw new CustomError(error.message, error.statusCode)
+            throw new CustomErrors(error.message, error.statusCode)
         }
     }
 
@@ -45,7 +45,7 @@ class MusicBusiness {
             const verifyToken = authenticator.getData(user)
 
             if (!verifyToken) {
-                throw new CustomError("Not authorized", 401);
+                throw new CustomErrors("Not authorized", 401);
             }
 
             const music = await musicDatabase.getAllMusics();
@@ -64,7 +64,7 @@ class MusicBusiness {
             // }
 
         } catch (error) {
-            throw new CustomError(error.message, error.statusCode)
+            throw new CustomErrors(error.message, error.statusCode)
         }
     }
 
@@ -75,13 +75,13 @@ class MusicBusiness {
             const verifyToken = authenticator.getData(input.token)
 
             if (!verifyToken) {
-                throw new CustomError("Not authorized", 401);
+                throw new CustomErrors("Not authorized", 401);
             }
 
             const music = await musicDatabase.getMusicById(input.id);
 
             if (!input.id) {
-                throw new CustomError("invalid-id", 401)
+                throw new CustomErrors("invalid-id", 401)
             }
 
             return {
@@ -96,7 +96,7 @@ class MusicBusiness {
             }
 
         } catch (error) {
-            throw new CustomError(error.message, error.statusCode)
+            throw new CustomErrors(error.message, error.statusCode)
         }
     }
 }
