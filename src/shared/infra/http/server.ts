@@ -2,9 +2,11 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import express from "express";
 import cors from 'cors'
+import "express-async-errors";
 
 import errorHandling from "./middlewares/errorHandling";
 import routes from "./routes";
+import "../typeorm"
 
 dotenv.config();
 

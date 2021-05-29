@@ -15,11 +15,11 @@ class UserDatabase extends BaseDataBase {
         password: string
     ): Promise<void> {
         try {
-            await BaseDataBase.connection
-                .insert({
-                    id, name, email, nickname, password
-                })
-                .into(UserDatabase.TABLE_NAME)
+            // await BaseDataBase.connection
+            //     .insert({
+            //         id, name, email, nickname, password
+            //     })
+            //     .into(UserDatabase.TABLE_NAME)
         } catch (error) {
             throw new Error(error.sqlMessage || error.message);
 
@@ -32,12 +32,12 @@ class UserDatabase extends BaseDataBase {
         email: string
     ): Promise<any> {
         try {
-            const login = await BaseDataBase.connection
-                .select("*")
-                .from(UserDatabase.TABLE_NAME)
-                .where({ email });
+            // const login = await BaseDataBase.connection
+            //     .select("*")
+            //     .from(UserDatabase.TABLE_NAME)
+            //     .where({ email });
 
-            return User.toUserModel(login[0])
+            // return User.toUserModel(login[0])
 
         } catch (error) {
             throw new Error(error.sqlMessage || error.message);

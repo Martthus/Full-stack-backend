@@ -11,15 +11,15 @@ console.log({
 })
 export default class BaseDataBase {
 
-    protected static connection: Knex = knex({
-        client: "sqlite3",
-        connection: {
-            host: process.env.DB_HOST,
-            port: Number(process.env.DB_PORT),
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_DATABASE,
-        },
-    });
+    // protected static connection: Knex = knex({
+    //     client: "sqlite3",
+    //     connection: {
+    //         host: process.env.DB_HOST,
+    //         port: Number(process.env.DB_PORT),
+    //         user: process.env.DB_USER,
+    //         password: process.env.DB_PASSWORD,
+    //         database: process.env.DB_DATABASE,
+    //     },
+    // });
 }
 
