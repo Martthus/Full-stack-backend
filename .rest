@@ -1,0 +1,46 @@
+### CADASTRO
+
+POST https://samurai-looping-music.herokuapp.com/user/signup
+Content-Type: application/json
+
+{
+	"name": "Mel lão",
+	"email": "melao@not.com",
+	"nickname": "Melao is not Melancia",
+	"password": "123456789"
+}
+
+### LOGIN
+
+POST https://samurai-looping-music.herokuapp.com/user/login
+Content-Type: application/json
+
+{
+	"email": "melao@not.com",
+	"password": "123456789"
+}
+
+### NEW MUSIC
+
+POST https://samurai-looping-music.herokuapp.com/music/new
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGNiN2QzLWJhNTAtNDY0NS04MTU1LTA4NDZhMGQwNTY1YiIsImlhdCI6MTYwNzUzNzY1NywiZXhwIjoxNjA3NjI0MDU3fQ.D_yVIMUEVIlvHMTsUYWAjYBxYMZYGPcno_PD2je6hYc
+Content-Type: application/json
+
+{
+	"title": "Years",
+    "file": "https://1drv.ms/u/s!AsvUnMzAz5bDhl8SyBINjKzCm-DN?e=yR3RzA",
+    "genre": ["POP International"],
+    "album": "2009",
+	"author_name": "Christina Perri"
+}
+
+### ALL MUSICS
+GET https://samurai-looping-music.herokuapp.com/music/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGNiN2QzLWJhNTAtNDY0NS04MTU1LTA4NDZhMGQwNTY1YiIsImlhdCI6MTYwNzUzNzY1NywiZXhwIjoxNjA3NjI0MDU3fQ.D_yVIMUEVIlvHMTsUYWAjYBxYMZYGPcno_PD2je6hYc
+# Content-Type: application/json
+
+
+### MUSIC FROM ID
+GET https://samurai-looping-music.herokuapp.com/music/1644e0-64ca-4029-8924-dac252fa95df
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGNiN2QzLWJhNTAtNDY0NS04MTU1LTA4NDZhMGQwNTY1YiIsImlhdCI6MTYwNzAxOTg2OCwiZXhwIjoxNjA3MTA2MjY4fQ.AdAGEbST_j7EpDuIAxEQEAipgiYXREywR42YCuTyoKM
+Content-Type: application/json

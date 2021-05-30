@@ -19,28 +19,28 @@ class MusicDatabase extends BaseDataBase {
         author_name: string
     ): Promise<any> {
         try {
-            await BaseDataBase.connection(MusicDatabase.TABLE_MUSIC)
-                .insert({
-                    id,
-                    title,
-                    author,
-                    date,
-                    file,
-                    genre,
-                    album,
-                    author_name
-                });
+            // await BaseDataBase.connection(MusicDatabase.TABLE_MUSIC)
+            //     .insert({
+            //         id,
+            //         title,
+            //         author,
+            //         date,
+            //         file,
+            //         genre,
+            //         album,
+            //         author_name
+            //     });
 
-            const result = await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
-                .select("genre")
-                .where({ genre })
+            // const result = await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
+            //     .select("genre")
+            //     .where({ genre })
 
-            if (result.length <= 0) {
-                await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
-                    .insert({ id, genre });
-            }
+            // if (result.length <= 0) {
+            //     await BaseDataBase.connection(MusicDatabase.TABLE_GENRE)
+            //         .insert({ id, genre });
+            // }
 
-            return
+            // return
 
         } catch (error) {
             throw new Error(error.sqlMessage || error.message);
@@ -49,11 +49,11 @@ class MusicDatabase extends BaseDataBase {
 
     public async getAllMusics(): Promise<any> {
         try {
-            const result = await BaseDataBase.connection.raw(`
-          SELECT * from ${MusicDatabase.TABLE_MUSIC} 
-        `);
+        //     const result = await BaseDataBase.connection.raw(`
+        //   SELECT * from ${MusicDatabase.TABLE_MUSIC} 
+        // `);
 
-            return (result[0]);
+        //     return (result[0]);
 
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
@@ -62,11 +62,11 @@ class MusicDatabase extends BaseDataBase {
 
     public async getMusicById(id: string): Promise<any> {
         try {
-            const result = await BaseDataBase.connection.raw(`
-          SELECT * from ${MusicDatabase.TABLE_MUSIC} WHERE id = '${id}'
-        `);
+        //     const result = await BaseDataBase.connection.raw(`
+        //   SELECT * from ${MusicDatabase.TABLE_MUSIC} WHERE id = '${id}'
+        // `);
 
-            return Music.toMusicModel(result[0][0]);
+        //     return Music.toMusicModel(result[0][0]);
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }

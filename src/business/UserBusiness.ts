@@ -1,5 +1,5 @@
 import { userDatabase } from "../data/UserDatabase";
-import { CustomError } from "../error/CustomError";
+import { CustomErrors } from "../shared/error/CustomErrors";
 import { LoginInputDTO, UserInputDTO } from "../model/User";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
@@ -12,15 +12,15 @@ class UserBusiness {
     public async signup(user: UserInputDTO) {
         try {
             if (!user.name || !user.email || !user.nickname || !user.password) {
-                throw new CustomError("Missing input", 422);
+                throw new CustomErrors("Missing input", 422);
             }
 
             if (user.email.indexOf("@") === -1) {
-                throw new CustomError("Invalid email", 422);
+                throw new CustomErrors("Invalid email", 422);
             }
 
             if (user.password.length < 6) {
-                throw new CustomError("Invalid password", 422);
+                throw new CustomErrors("Invalid password", 422);
             }
 
             const idGenerator = new IdGenerator();
@@ -29,6 +29,7 @@ class UserBusiness {
 
             const hashManager = new HashManager();
             const hashPassword = await hashManager.hash(user.password);
+            console.log(id, user.name, user.email, user.nickname, hashPassword)
 
             await userDatabase.signup(id, user.name, user.email, user.nickname, hashPassword);
 
@@ -37,7 +38,7 @@ class UserBusiness {
 
             return accessToken;
         } catch (error) {
-            throw new CustomError(error.message, error.statusCode);
+            throw new CustomErrors(error.message, error.statusCode);
         }
 
     }
@@ -49,32 +50,32 @@ class UserBusiness {
     ) {
         try {
             if (!user.email || !user.password) {
-                throw new CustomError("Missing input", 422);
+                throw new CustomErrors("Missing input", 422);
             }
 
             const userFromDB = await userDatabase.login(user.email);
 
             if (!userFromDB) {
-                throw new CustomError("Invalid credentials", 401);
+                throw new CustomErrors("Invalid credentials", 401);
             }
 
             const hashManager = new HashManager();
             const hashCompare = await hashManager.compare(user.password, userFromDB.getPassword());
 
             if (!hashCompare) {
-                throw new CustomError("Invalid credentials", 401);
+                throw new CustomErrors("Invalid credentials", 401);
             }
 
             const authenticator = new Authenticator();
             const accessToken = authenticator.generateToken({ id: userFromDB.getId() });
 
             if (!hashCompare) {
-                throw new CustomError("Invalid Password!", 422);
+                throw new CustomErrors("Invalid Password!", 422);
             }
 
             return accessToken;
         } catch (error) {
-            throw new CustomError(error.message, error.statusCode);
+            throw new CustomErrors(error.message, error.statusCode);
         }
 
     }

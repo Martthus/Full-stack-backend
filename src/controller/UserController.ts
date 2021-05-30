@@ -17,7 +17,6 @@ class UserController {
 
             const token = await userBusiness.signup(input);
 
-
             res.status(200).send({ token });
 
         } catch (error) {
