@@ -1,32 +1,16 @@
 name: deployment
-on:
-  push:
-    branches:
-      - develop
+on: 
   pull_request:
-    branches:
+    branches: 
       - main
 
-jobs:
-  tests:
+jobs: 
+  build: 
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - name: Instala node package
-        run: npm install
-      - name: Roda os testes
-        run: npm run test
-
-  deployment:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
+    steps: 
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.8.8
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "samurai-looping-music"
+          heroku_app_name: "samurai-looping-music" #Must be unique in Heroku
           heroku_email: "ichheibemartus@outlook.com"
