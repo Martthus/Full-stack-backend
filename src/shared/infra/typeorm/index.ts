@@ -1,3 +1,8 @@
 import { createConnections } from "typeorm"
 
-createConnections()
+createConnections().then(() => {
+    console.log("ok")
+})
+    .catch((e) => {
+        console.error(e)
+    })
